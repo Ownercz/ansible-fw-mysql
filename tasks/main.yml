@@ -1,0 +1,7 @@
+- name: Allow mysql
+  command: firewall-cmd --zone=public --permanent --add-port=3306/tcp
+  
+- name: Bounce firewalld
+  service: name=firewalld state=restarted
+  when: "'con01' not in inventory_hostname_short"
+  
